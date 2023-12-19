@@ -8,13 +8,17 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
+            <li class="nav-item">
+                <a href="{{ route('home') }}"
+                    class="nav-link"><i class="fas fa-fire"></i><span>Home</span></a>
+            </li>
             <li class="nav-item dropdown">
                 <a href="#"
-                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>User</span></a>
                 <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
+                    <li>
                         <a class="nav-link"
-                            href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
+                            href="{{ route('user.index') }}">List User</a>
                     </li>
                 </ul>
             </li>
