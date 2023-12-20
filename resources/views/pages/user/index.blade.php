@@ -84,7 +84,7 @@
                                                     {{ $user->roles }}
                                                 </td>
 
-                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($user->created_at)->translatedFormat('l, d F Y H:i') }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('user.edit', $user->id) }}'

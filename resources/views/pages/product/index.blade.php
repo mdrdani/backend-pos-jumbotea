@@ -68,6 +68,7 @@
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Stock</th>
+                                            <th>Price</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -82,8 +83,12 @@
                                                 <td>
                                                     {{ $product->stock }}
                                                 </td>
+                                                <td>
+                                                    @currency($product->price)
+                                                </td>
 
-                                                <td>{{ $product->created_at }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($product->created_at)->translatedFormat('l, d F Y H:i') }}</td>
+
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('product.edit', $product->id) }}'
