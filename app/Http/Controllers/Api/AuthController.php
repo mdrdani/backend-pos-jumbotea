@@ -9,71 +9,80 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-     /**
-      * Display a listing of the resource.
-      */
-     public function index()
-     {
-          //
-     }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
 
-     /**
-      * Store a newly created resource in storage.
-      */
-     public function store(Request $request)
-     {
-          //
-     }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-     /**
-      * Display the specified resource.
-      */
-     public function show(string $id)
-     {
-          //
-     }
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-     /**
-      * Update the specified resource in storage.
-      */
-     public function update(Request $request, string $id)
-     {
-          //
-     }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
-     /**
-      * Remove the specified resource from storage.
-      */
-     public function destroy(string $id)
-     {
-          //
-     }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 
-     public function login(Request $request)
-     {
-          $logindata = $request->validate([
-               'email' => 'required|email',
-               'password' => 'required'
-          ]);
+    public function login(Request $request)
+    {
+        $logindata = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-          $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-          if (!$user) {
-               return response([
-                    'message' => ['These crendentials do not match our records'],
-               ], 404);
-          }
+        if (!$user) {
+            return response([
+                'message' => ['These crendentials do not match our records'],
+            ], 404);
+        }
 
-          if (!Hash::check($request->password, $user->password)) {
-               return response([
-                    'message' => ['password not match']
-               ], 404);
-          }
+        if (!Hash::check($request->password, $user->password)) {
+            return response([
+                'message' => ['password not match']
+            ], 404);
+        }
 
-          $token = $user->createToken('auth_token')->plainTextToken;
-          return response([
-               'user' => $user,
-               'token' => $token,
-          ], 200);
-     }
+        $token = $user->createToken('auth_token')->plainTextToken;
+        return response([
+            'user' => $user,
+            'token' => $token,
+        ], 200);
+    }
+
+    //logout
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'message' => 'Logout success',
+        ]);
+    }
 }
