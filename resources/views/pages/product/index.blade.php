@@ -69,6 +69,7 @@
                                             <th>Category</th>
                                             <th>Stock</th>
                                             <th>Price</th>
+                                            <th>Photo</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -85,6 +86,14 @@
                                                 </td>
                                                 <td>
                                                     @currency($product->price)
+                                                </td>
+                                                <td>
+                                                    @if($product->image)
+                                                        <img src="{{ asset('storage/products/' . $product->image) }}" alt=""
+                                                            width="100px">
+                                                    @else
+                                                        <span class="badge badge-danger">No Image</span>
+                                                    @endif
                                                 </td>
 
                                                 <td>{{ \Carbon\Carbon::parse($product->created_at)->translatedFormat('l, d F Y H:i') }}</td>
