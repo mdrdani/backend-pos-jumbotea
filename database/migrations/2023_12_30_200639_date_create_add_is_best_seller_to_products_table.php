@@ -6,25 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::table('products', function (Blueprint $table) {
-            //
-            $table->integer('is_best_seller')->default(0);
-        });
-    }
+     /**
+      * Run the migrations.
+      */
+     public function up(): void
+     {
+          Schema::table('products', function (Blueprint $table) {
+               //
+               $table->boolean('is_best_seller')->default(0);
+          });
+     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('products', function (Blueprint $table) {
-            //
-            $table->dropColumn('is_best_seller');
-        });
-    }
+     /**
+      * Reverse the migrations.
+      */
+     public function down(): void
+     {
+          Schema::table('products', function (Blueprint $table) {
+               //
+               $table->dropColumn('is_best_seller');
+          });
+     }
 };
